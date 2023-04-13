@@ -78,15 +78,27 @@ def move(boardArray, posCoord, goalCoord):
   if boardArray[posCoord[1]][posCoord[0]] == obstacleChar:
 
     #coord being moved to is obstacle
-    if posCoord[1] > posBackup[1]:
+    if posCoord[1] > posBackup[1] and boardArray[posCoord[1]-1][posCoord[0]+1] != obstacleChar:
       #obstacle is beneath, move right
       posCoord = posBackup
       posCoord[0] += 1
 
-    elif posCoord[0] > posBackup[0]:
+    elif posCoord[0] > posBackup[0] and boardArray[posCoord[1]+1][posCoord[0]-1] != obstacleChar:
       #obstacle is right, move down
       posCoord = posBackup
       posCoord[1] += 1
+
+    else:
+      #obstacle is both directions, move up until can move right
+      posCoord = posBackup
+
+      while boardArray[posCoord[1]][posCoord[0]+1] == obstacleChar:
+        posCoord[1] -= 1
+        boardArray[posCoord[1]][posCoord[0]] = pathChar
+
+      posCoord[0] += 1
+
+      
 
   boardArray[posCoord[1]][posCoord[0]] = pathChar
 
