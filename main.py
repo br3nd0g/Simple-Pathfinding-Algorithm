@@ -41,7 +41,7 @@ def showBoard(curBoard):
 
   if goalReached == False:
     time.sleep(0.7)
-    os.system('clear')
+    os.system('cls||clear')
 
 
 def move(boardArray, posCoord, goalCoord):
